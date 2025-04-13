@@ -7,9 +7,7 @@ export default function Input() {
         <li key={ingredient || index}>{ingredient}</li>  // Use index as a fallback key
     ))
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const formData = new FormData(event.target)
+    function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
         
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
@@ -18,7 +16,7 @@ export default function Input() {
 
     return (
         <main>
-            <form className="add-ingredient-form" onSubmit={handleSubmit}>  
+            <form className="add-ingredient-form" action={addIngredient}>  
                 <input type="text" name="ingredient" placeholder="e.g. oregano" />
                 <button type="submit">+ Add Ingredient</button>
             </form>
